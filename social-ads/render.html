@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>goodie4you Ad</title>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:400;src:url(assets/fonts/playfair-display-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-style:italic;font-weight:400;src:url(assets/fonts/playfair-display-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400;src:url(assets/fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:500;src:url(assets/fonts/dm-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;src:url(assets/fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{--ink:#0E0E0E;--paper:#fff;--cream:#F5F1EA;--sand:#E8DFD2;--accent:#C9B79C;--accent-dark:#8A7658;
+  --serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#ddd}
+.ad{position:relative;width:1080px;overflow:hidden;font-family:var(--sans);color:var(--ink);background:var(--cream)}
+.f1x1{height:1080px}.f4x5{height:1350px}.f9x16{height:1920px}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.logo{height:62px;width:auto;display:block}
+.kicker{font-size:27px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:400;line-height:1.04;letter-spacing:-.01em}
+h1 em{font-style:italic}
+.sub{font-size:31px;line-height:1.35;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:16px;border-radius:999px;padding:26px 44px;font-size:30px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.cta::after{content:"→";font-size:32px;font-weight:400}
+.cta.dark{background:var(--ink);color:var(--paper)}
+.cta.light{background:var(--paper);color:var(--ink)}
+.badge{position:absolute;top:56px;right:56px;background:var(--cream);color:var(--ink);border-radius:999px;padding:18px 30px;font-size:26px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.url{font-size:24px;font-weight:500;letter-spacing:.06em;opacity:.75}
+.row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+
+/* overlay */
+.L-overlay .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.45) 0%,rgba(14,14,14,0) 22%,rgba(14,14,14,0) 38%,rgba(14,14,14,.82) 100%)}
+.L-overlay .top{position:absolute;top:56px;left:64px}
+.L-overlay .txt{position:absolute;left:64px;right:64px;bottom:64px;color:#fff}
+.L-overlay .kicker{color:var(--sand);margin-bottom:22px}
+.L-overlay h1{font-size:96px;margin-bottom:40px}
+
+/* panel */
+.L-panel .photo{position:absolute;left:0;right:0;top:0}
+.L-panel .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.L-panel .pan{position:absolute;left:0;right:0;bottom:0;background:var(--cream);padding:52px 64px 56px}
+.L-panel .kicker{color:var(--accent-dark);margin-bottom:18px}
+.L-panel h1{font-size:76px;margin-bottom:20px}
+.L-panel .sub{margin-bottom:34px;color:#3a3a3a}
+.L-panel .logo{height:48px}
+
+/* split */
+.L-split .photo{position:absolute;left:0;right:0;top:0}
+.L-split .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.L-split .pan{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:#fff;padding:54px 64px 58px}
+.L-split .kicker{color:var(--accent);margin-bottom:18px}
+.L-split h1{font-size:80px;margin-bottom:22px}
+.L-split .sub{color:rgba(255,255,255,.78);margin-bottom:34px}
+.L-split .logo{height:48px}
+
+/* type */
+.L-type{background:var(--cream)}
+.L-type .head{position:absolute;left:72px;right:72px;top:72px}
+.L-type .kicker{color:var(--accent-dark);margin:44px 0 22px}
+.L-type h1{font-size:92px}
+.L-type .card{position:absolute;right:-60px;bottom:-60px;width:600px;height:600px;border-radius:40px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.18);transform:rotate(-4deg)}
+.L-type .card img{width:100%;height:100%;object-fit:cover}
+.L-type .foot{position:absolute;left:72px;bottom:72px}
+.L-type .foot .url{margin-top:22px;display:block}
+
+/* stat */
+.L-stat .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.35),rgba(14,14,14,0) 30%)}
+.L-stat .top{position:absolute;top:56px;left:64px}
+.L-stat .card{position:absolute;left:48px;right:48px;bottom:48px;background:var(--cream);border-radius:36px;padding:48px 56px 52px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.L-stat .kicker{color:var(--accent-dark);margin-bottom:10px}
+.L-stat .stat{font-family:var(--serif);font-size:150px;line-height:1;margin:8px 0 6px}
+.L-stat .slabel{font-size:28px;font-weight:500;color:#555;margin-bottom:26px}
+.L-stat h1{font-size:62px;margin-bottom:34px}
+
+/* review */
+.L-review{background:var(--cream)}
+.L-review .inner{position:absolute;inset:0;padding:72px;display:flex;flex-direction:column}
+.L-review .pic{border-radius:32px;overflow:hidden;flex:none}
+.L-review .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.L-review .stars{font-size:46px;letter-spacing:.12em;color:var(--ink);margin:44px 0 18px}
+.L-review blockquote{font-family:var(--serif);font-style:italic;line-height:1.22;flex:1}
+.L-review .who{font-size:28px;font-weight:700;margin-top:26px}
+.L-review .who span{font-weight:400;color:#666}
+.L-review .foot{margin-top:40px}
+.L-review .logo{height:50px}
+
+/* story */
+.L-story .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.9) 0%,rgba(14,14,14,.82) 24%,rgba(14,14,14,.5) 36%,rgba(14,14,14,0) 50%,rgba(14,14,14,0) 56%,rgba(14,14,14,.88) 100%)}
+.L-story h1,.L-story .sub,.L-overlay h1{text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.L-story .head{position:absolute;left:72px;right:72px;top:250px;color:#fff}
+.L-story .kicker{color:var(--sand);margin:46px 0 24px}
+.L-story h1{font-size:112px}
+.L-story .foot{position:absolute;left:72px;right:72px;bottom:300px;color:#fff;text-align:center}
+.L-story .sub{margin-bottom:38px;color:rgba(255,255,255,.9)}
+.L-story .cta{font-size:34px;padding:30px 56px}
+.L-story .logo{height:56px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="ads.js"></script>
+<script>
+const id = +new URLSearchParams(location.search).get('id') || 1;
+const ad = ADS.find(a => a.id === id);
+const H = {"1x1":1080,"4x5":1350,"9x16":1920}[ad.format];
+const img = n => `assets/fotos/${n}`;
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const head = s => esc(s).split('|').map(l => l.replace(/_([^_]+)_/g,'<em>$1</em>')).join('<br>');
+const logoB = '<img class="logo" src="assets/logo-black.webp" alt="goodie4you">';
+const logoW = '<img class="logo" src="assets/logo-white.webp" alt="goodie4you">';
+const pos = ad.pos || 'center';
+const badge = ad.badge ? `<div class="badge">${esc(ad.badge)}</div>` : '';
+const sub = ad.sub ? `<p class="sub">${esc(ad.sub)}</p>` : '';
+const kicker = ad.kicker ? `<div class="kicker">${esc(ad.kicker)}</div>` : '';
+let html = '';
+switch (ad.layout) {
+  case 'overlay':
+    html = `<img class="bg" src="${img(ad.img)}" style="object-position:${pos}"><div class="shade"></div>
+      <div class="top">${logoW}</div>${badge}
+      <div class="txt">${kicker}<h1 class="fit">${head(ad.headline)}</h1>
+      <div class="row"><span class="cta light">${esc(ad.cta)}</span><span class="url">goodie4you.de</span></div></div>`;
+    break;
+  case 'panel': case 'split': {
+    const ph = {"1x1":520,"4x5":720,"9x16":1100}[ad.format];
+    html = `<div class="photo" style="height:${ph}px"><img src="${img(ad.img)}" style="object-position:${pos}"></div>${badge}
+      <div class="pan" style="top:${ph}px">${kicker}<h1 class="fit">${head(ad.headline)}</h1>${sub}
+      <div class="row"><span class="cta ${ad.layout==='panel'?'dark':'light'}">${esc(ad.cta)}</span>${ad.layout==='panel'?logoB:logoW}</div></div>`;
+    break; }
+  case 'type': {
+    const card = ad.format==='1x1' ? 520 : ad.format==='4x5' ? 600 : 760;
+    html = `<div class="head">${logoB}${kicker}<h1 class="fit">${head(ad.headline)}</h1></div>
+      <div class="card" style="width:${card}px;height:${card}px"><img src="${img(ad.img)}"></div>
+      <div class="foot"><span class="cta dark">${esc(ad.cta)}</span><span class="url">goodie4you.de</span></div>`;
+    break; }
+  case 'stat':
+    html = `<img class="bg" src="${img(ad.img)}" style="object-position:${pos}"><div class="shade"></div>
+      <div class="top">${logoW}</div>
+      <div class="card">${kicker}<div class="stat">${esc(ad.stat)}</div><div class="slabel">${esc(ad.statLabel)}</div>
+      <h1 class="fit">${head(ad.headline)}</h1>
+      <div class="row"><span class="cta dark">${esc(ad.cta)}</span><span class="url">goodie4you.de</span></div></div>`;
+    break;
+  case 'review': {
+    const pic = {"1x1":[936,380],"4x5":[936,560],"9x16":[936,820]}[ad.format];
+    const qs = {"1x1":50,"4x5":54,"9x16":64}[ad.format];
+    const top = ad.format==='9x16' ? 'padding-top:230px;padding-bottom:270px' : '';
+    html = `<div class="inner" style="${top}"><div class="pic" style="height:${pic[1]}px"><img src="${img(ad.img)}"></div>
+      <div class="stars">★★★★★</div>
+      <blockquote class="fitq" style="font-size:${qs}px">„${esc(ad.quote)}“</blockquote>
+      <div class="who">${esc(ad.author)} <span>· Etsy-Bewertung · Ø 4,8 aus 126</span></div>
+      <div class="foot row"><span class="cta dark">${esc(ad.cta)}</span>${logoB}</div></div>`;
+    break; }
+  case 'story':
+    html = `<img class="bg" src="${img(ad.img)}" style="object-position:${pos}"><div class="shade"></div>
+      <div class="head">${logoW}${kicker}<h1 class="fit">${head(ad.headline)}</h1></div>
+      <div class="foot">${sub}<span class="cta light">${esc(ad.cta)}</span></div>`;
+    break;
+}
+const root = document.getElementById('root');
+root.innerHTML = `<div class="ad f${ad.format} L-${ad.layout}" id="ad">${html}</div>`;
+
+// Auto-Fit: Überschrift/Zitat verkleinern, bis nichts mehr überläuft oder kollidiert.
+function overflows(){
+  const box = document.getElementById('ad').getBoundingClientRect();
+  const els = [...document.querySelectorAll('#ad h1, #ad .cta, #ad .sub, #ad .who, #ad .foot')];
+  for (const e of els){ const r = e.getBoundingClientRect(); if (r.right > box.right-40 || r.bottom > box.bottom-30 || r.top < box.top) return true; }
+  // Kollision Kopf-/Fußbereich (type, story)
+  const h = document.querySelector('#ad .head'), f = document.querySelector('#ad .foot, #ad .card');
+  if (h && f && h.getBoundingClientRect().bottom > f.getBoundingClientRect().top - 30) return true;
+  const q = document.querySelector('#ad .fitq'); if (q && q.scrollHeight > q.clientHeight + 2) return true;
+  return false;
+}
+document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => i.onload = i.onerror = r)))).then(() => {
+  const h1 = document.querySelector('#ad h1.fit'), q = document.querySelector('#ad .fitq');
+  for (let i = 0; i < 60 && overflows(); i++) {
+    if (q) q.style.fontSize = (parseFloat(getComputedStyle(q).fontSize) - 2) + 'px';
+    else if (h1) h1.style.fontSize = (parseFloat(getComputedStyle(h1).fontSize) - 3) + 'px';
+  }
+  document.body.dataset.ready = '1';
+});
+</script>
+</body>
+</html>

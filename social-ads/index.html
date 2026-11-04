@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>goodie4you Social Ads</title>
+<style>
+@font-face{font-family:"Playfair Display";src:url(assets/fonts/playfair-display-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-style:italic;src:url(assets/fonts/playfair-display-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400;src:url(assets/fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;src:url(assets/fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{--ink:#0E0E0E;--cream:#F5F1EA;--sand:#E8DFD2;--accent:#8A7658}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.5 "DM Sans",system-ui,sans-serif}
+header{padding:40px 16px 8px;max-width:1360px;margin:auto}
+h1{font:400 44px/1.1 "Playfair Display",serif;margin:0 0 8px}h1 em{font-style:italic}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.filters button{border:1px solid #0002;background:#fff;border-radius:999px;padding:8px 16px;font:inherit;cursor:pointer}
+.filters button.on{background:var(--ink);color:#fff}
+main{max-width:1360px;margin:auto;padding:0 16px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;display:block;background:var(--sand)}
+.meta{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.title{font-weight:700}
+.cap{font-size:14px;color:#333;flex:1}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.acts button,.acts a{border:0;background:var(--sand);border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink);text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>goodie4you · <em>50 Social Ads</em></h1>
+  <p>Fertige Motive (PNG) mit Anzeigentitel und Primärtext. Alle Texte auch in <a href="ads.csv">ads.csv</a>.</p>
+  <div class="filters" id="filters"></div>
+</header>
+<main id="grid"></main>
+<script src="ads.js"></script>
+<script>
+const fn = a => `export/g4y-ad-${String(a.id).padStart(2,'0')}-${a.format}.png`;
+const fmts = {all:'Alle', '1x1':'1:1 Feed', '4x5':'4:5 Feed', '9x16':'9:16 Story/Reel'};
+let cur = 'all';
+const f = document.getElementById('filters');
+f.innerHTML = Object.entries(fmts).map(([k,v]) => `<button data-k="${k}">${v}</button>`).join('');
+f.onclick = e => { if (e.target.dataset.k) { cur = e.target.dataset.k; draw(); } };
+function draw(){
+  [...f.children].forEach(b => b.classList.toggle('on', b.dataset.k === cur));
+  document.getElementById('grid').innerHTML = ADS.filter(a => cur === 'all' || a.format === cur).map(a => `
+    <article class="card"><img loading="lazy" src="${fn(a)}" alt="Ad ${a.id}">
+    <div class="meta"><span class="tag">#${a.id} · ${a.angle} · ${a.format.replace('x',':')}</span>
+    <span class="title">${a.title}</span><span class="cap">${a.caption}</span>
+    <div class="acts"><button data-c="${a.id}">Text kopieren</button><a href="${fn(a)}" download>PNG laden</a></div></div></article>`).join('');
+}
+document.getElementById('grid').onclick = async e => {
+  const id = +e.target.dataset.c; if (!id) return;
+  const a = ADS.find(x => x.id === id);
+  try { await navigator.clipboard.writeText(`${a.caption}\n\n${HASHTAGS}`); e.target.textContent = 'Kopiert ✓'; } catch { e.target.textContent = 'Kopieren nicht möglich'; }
+};
+draw();
+</script>
+</body>
+</html>
