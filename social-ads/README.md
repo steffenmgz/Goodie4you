@@ -15,9 +15,9 @@ Fertige Werbemotive für den personalisierten Familienplaner aus Acrylglas, im L
 
 ## Formate
 
-- **17 × 1:1** (1080 × 1080) – Feed
+- **19 × 1:1** (1080 × 1080) – Feed
 - **17 × 4:5** (1080 × 1350) – Instagram-/Facebook-Feed
-- **16 × 9:16** (1080 × 1920) – Stories, Reels, TikTok, Pinterest (Text außerhalb der oberen 250 px / unteren 300 px)
+- **14 × 9:16** (1080 × 1920) – Stories, Reels, TikTok, Pinterest (Text außerhalb der oberen 250 px / unteren 300 px)
 
 ## Themen
 
